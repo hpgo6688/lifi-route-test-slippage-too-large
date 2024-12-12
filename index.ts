@@ -33,7 +33,7 @@ const time = new Date().getTime();
 async function fetchRoutes(params, spinner) {
   try {
     const response = await axios.post(`${domain}/v1/advanced/routes`, params);
-    await saveData(time.toString(), 'routes', response.data);
+    await saveData(time.toString(), 'routes', response.data, spinner);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -56,7 +56,7 @@ async function fetchAllRouteStepTransaction(routes, spinner) {
   const allPromises = routes.map(async route => {
     const stepPromises = route.steps.map(async step => {
       const data = await fetchStepData(step, spinner);
-      await saveData(path.join(time.toString(), route.id), step.id, data);
+      await saveData(path.join(time.toString(), route.id), step.id, data, spinner);
     });
     return Promise.all(stepPromises);
   });
@@ -70,14 +70,14 @@ async function fetchAllRouteStepTransaction(routes, spinner) {
   }
 }
 
-async function saveData(dirName, fileName, data) {
-  const dirPath = path.join(__dirname, `routest_` + dirName);
+async function saveData(dirName, fileName, data, spinner) {
+  const dirPath = path.join(__dirname, `routes_` + dirName);
   const filePath = path.join(dirPath, `${fileName}.json`);
 
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
-
+  spinner.succeed(`routes_` + dirName + `/${fileName}.json`);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 

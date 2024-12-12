@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx esrun index.ts"
+    "server": "esrun server.ts",
+    "fetch": "esrun index.ts",
+    "clean": "rm -rf routes_*"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,11 @@
   "description": "",
   "dependencies": {
     "axios": "^1.7.9",
-    "ora": "^8.1.1"
+    "dotenv": "^16.4.7",
+    "esrun": "^3.2.26",
+    "express": "^4.21.2",
+    "http-proxy-middleware": "^3.0.3",
+    "ora": "^8.1.1",
+    "wait-on": "^8.0.1"
   }
 }
