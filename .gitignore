@@ -1,8 +1,9 @@
 node_modules
 .DS_Store
-routest_*
+routes_*
 .env
 .env.local
 .env.development
 .env.test
 .env.production
+*.zip

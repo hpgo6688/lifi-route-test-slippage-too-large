@@ -4,7 +4,8 @@ import axios from 'axios';
 import ora from 'ora';
 
 const routes_params = {
-  "fromAmount": "800000000000000000",
+  // "fromAmount": "800000000000000000",
+  "fromAmount": "3000000000000000000",
   "fromAddress": "0x1f561Aed6734C7eAd5379D8f1642c1A21Cf02bb7",
   "toAddress": "0x1f561Aed6734C7eAd5379D8f1642c1A21Cf02bb7",
   "fromChainId": 10,
@@ -19,7 +20,9 @@ const routes_params = {
         "stargateV2Bus"
       ]
     },
-    "exchanges": {},
+    "exchanges": {
+      // "deny": ["sushiswap"]
+    },
     "maxPriceImpact": 0.4,
     "slippage": 0.005
   },
